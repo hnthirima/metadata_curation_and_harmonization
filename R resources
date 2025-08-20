@@ -1,0 +1,8 @@
+janitor::clean_names()    # to make columns consistent
+
+unique()
+
+table()
+
+janitor::tbly()
+
