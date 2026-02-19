@@ -7,11 +7,9 @@ into a single standardized format.
 
 The process involves three main steps:
 
-1.  compiling individual dataset metadata
-
-2.  creating a column mapping guide
-
-3.  running an automated R script to generate the final harmonized
+1. compiling individual dataset metadata
+2. creating a column mapping guide
+3. running an automated R script to generate the final harmonized
     metadata file.
 
 NOTE: This version may not capture all available clinical variables.
@@ -23,7 +21,6 @@ fields as needed.
 ## **Required Software**
 
 -   R (version 4.0 or higher)
-
 -   RStudio (recommended)
 
 ## **Required R Packages**
@@ -32,11 +29,9 @@ install.packages(c(\"readr\", \"readxl\", \"dplyr\"))
 
 ## **Required Files**
 
--   Individual dataset metadata files (CSV or Excel format)
-
--   Column mapping guide template (Excel file)
-
--   Harmonization R script
+1. Individual dataset metadata files (CSV or Excel format)
+2. Column mapping guide template (Excel file)
+3. Harmonization R script
 
 ## **Step 1: Compile Metadata for Each Dataset**
 
@@ -52,9 +47,7 @@ For each dataset (e.g., TCGA\_SKCM, Riaz, Liu, Hugo, etc.), create a
 **Examples:**
 
 -   TCGA\_SKCM.csv
-
 -   Riaz.csv
-
 -   Liu.csv
 
 ### **1.2 Essential Metadata Columns**
@@ -114,10 +107,10 @@ available:
 
 **Example dataset file structure:**
 
-      **patient\_id**   **age**   **sex**   **vital\_status**   **os\_months**   **treatment**   **response**
+      patient\_id           age     sex       vital\_status       os\_months      treatment       response
       ----------------- --------- --------- ------------------- ---------------- --------------- --------------
-      PT001             65        M         Alive               24.5             Nivolumab       CR
-      PT002             58        F         Dead                8.2              Pembrolizumab   PD
+      PT001                65          M           Alive                 24.5       Nivolumab         CR
+      PT002                58          F           Dead                  8.2        Pembrolizumab     PD
 
 ### **1.4 Organize Files**
 
@@ -142,46 +135,46 @@ with the following structure:
 This column contains the standardized column names that all datasets
 will be mapped to:
 
-STANDARD\_COLUMN\_NAMES
-COORDINATE\_ID
-SAMPLE\_ID
-PATIENT\_ID
-FILE\_NAME
-AGE\_YEARS
-AGE\_UNIT
-AGE\_CATEGORY
-GENDER
-RACE
-ETHNICITY
-VITAL\_STATUS
-TIME\_TO\_DEATH\_DAYS
-TIME\_TO\_DEATH\_UNIT
-TIME\_TO\_LAST\_FOLLOWUP\_DAYS
-TIME\_TO\_LAST\_FOLLOWUP\_UNIT
-OS\_MONTHS
-OS\_MONTHS\_UNIT
-OS\_STATUS
-PFS
-PFS\_UNIT
-PROGRESSION
-RECURRENCE
-WHO\_GRADE
-AJCC\_STAGE
-T\_STAGE
-N\_STAGE
-M\_STAGE
-PRIMARY\_MET
-DIAGNOSIS
-TREATMENT\_IMMUNOTHERAPY
-TREATMENT\_CHEMOTHERAPY
-TREATMENT\_TARGETED
-TREATMENT\_RADIATION
-PRIOR\_TREATMENT
-PRIOR\_MALIGNANCY
-SAMPLE\_TIMEPOINT
-SITE\_OF\_RESECTION
-RECIST\_RESPONSE
-RESPONDER\_NONRESPONDER
+- STANDARD\_COLUMN\_NAMES
+- COORDINATE\_ID
+- SAMPLE\_ID
+- PATIENT\_ID
+- FILE\_NAME
+- AGE\_YEARS
+- AGE\_UNIT
+- AGE\_CATEGORY
+- GENDER
+- RACE
+- ETHNICITY
+- VITAL\_STATUS
+- TIME\_TO\_DEATH\_DAYS
+- TIME\_TO\_DEATH\_UNIT
+- TIME\_TO\_LAST\_FOLLOWUP\_DAYS
+- TIME\_TO\_LAST\_FOLLOWUP\_UNIT
+- OS\_MONTHS
+- OS\_MONTHS\_UNIT
+- OS\_STATUS
+- PFS
+- PFS\_UNIT
+- PROGRESSION
+- RECURRENCE
+- WHO\_GRADE
+- AJCC\_STAGE
+- T\_STAGE
+- N\_STAGE
+- M\_STAGE
+- PRIMARY\_MET
+- DIAGNOSIS
+- TREATMENT\_IMMUNOTHERAPY
+- TREATMENT\_CHEMOTHERAPY
+- TREATMENT\_TARGETED
+- TREATMENT\_RADIATION
+- PRIOR\_TREATMENT
+- PRIOR\_MALIGNANCY
+- SAMPLE\_TIMEPOINT
+- SITE\_OF\_RESECTION
+- RECIST\_RESPONSE
+- RESPONDER\_NONRESPONDER
 
 **Columns B onwards: One column per dataset**
 
@@ -190,16 +183,16 @@ name (matching the CSV filename without extension).
 
 **Example:**
 
-  **STANDARD\_COLUMN\_NAMES**   **TCGA\_SKCM**          **Riaz**     **Liu**
-  ----------------------------- ----------------------- ------------ ------------
-  COORDINATE\_ID                bcr\_patient\_barcode   Sample\_ID   Sample
-  PATIENT\_ID                   bcr\_patient\_barcode   Patient      Patient
-  AGE\_YEARS                    age\_at\_diagnosis      Age          age
-  AGE\_UNIT                     years                   years        years
-  GENDER                        gender                  Sex          gender
-  VITAL\_STATUS                 vital\_status           Status       os\_status
-  OS\_MONTHS                    OS.time                 OS           os\_months
-  OS\_MONTHS\_UNIT              months                  months       months
+    STANDARD\_COLUMN\_NAMES              TCGA\_SKCM             Riaz        Liu
+      ----------------------------- ----------------------- ------------ ------------
+      COORDINATE\_ID                bcr\_patient\_barcode   Sample\_ID   Sample
+      PATIENT\_ID                   bcr\_patient\_barcode   Patient      Patient
+      AGE\_YEARS                    age\_at\_diagnosis      Age          age
+      AGE\_UNIT                     years                   years        years
+      GENDER                        gender                  Sex          gender
+      VITAL\_STATUS                 vital\_status           Status       os\_status
+      OS\_MONTHS                    OS.time                 OS           os\_months
+      OS\_MONTHS\_UNIT              months                  months       months
 
 ### **2.3 How to Fill the Mapping Guide**
 
@@ -222,16 +215,16 @@ row:
 
 **Example mapping for Liu dataset:**
 
-  **STANDARD\_COLUMN\_NAMES**   **Liu**
-  ----------------------------- -------------
-  COORDINATE\_ID                Sample
-  PATIENT\_ID                   Patient
-  AGE\_YEARS                    age
-  AGE\_UNIT                     years
-  TIME\_TO\_DEATH\_DAYS         death\_time
-  TIME\_TO\_DEATH\_UNIT         days
-  OS\_MONTHS                    
-  OS\_MONTHS\_UNIT              
+      STANDARD\_COLUMN\_NAMES           Liu
+      ----------------------------- -------------
+      COORDINATE\_ID                Sample
+      PATIENT\_ID                   Patient
+      AGE\_YEARS                    age
+      AGE\_UNIT                     years
+      TIME\_TO\_DEATH\_DAYS         death\_time
+      TIME\_TO\_DEATH\_UNIT         days
+      OS\_MONTHS                    
+      OS\_MONTHS\_UNIT              
 
 ### **2.4 One-to-Many Mapping (Advanced)**
 
@@ -241,12 +234,12 @@ columns**.
 **Example:** If Riaz has a single \"survival\_time\" column that should
 populate both OS\_MONTHS and PFS:
 
-  **STANDARD\_COLUMN\_NAMES**   **Riaz**
-  ----------------------------- ----------------
-  OS\_MONTHS                    survival\_time
-  OS\_MONTHS\_UNIT              months
-  PFS                           survival\_time
-  PFS\_UNIT                     months
+      **STANDARD\_COLUMN\_NAMES**   **Riaz**
+      ----------------------------- ----------------
+      OS\_MONTHS                    survival\_time
+      OS\_MONTHS\_UNIT              months
+      PFS                           survival\_time
+      PFS\_UNIT                     months
 
 The script will automatically duplicate the data.
 
@@ -546,10 +539,10 @@ table(original\_data\$vital\_status\_column)
 
 **Example fix in mapping guide:**
 
-  **STANDARD\_COLUMN\_NAMES**   **Liu**
-  ----------------------------- ------------------------
-  TIME\_TO\_DEATH\_DAYS         death\_time
-  TIME\_TO\_DEATH\_UNIT         **days** ← Check this!
+      **STANDARD\_COLUMN\_NAMES**   **Liu**
+      ----------------------------- ------------------------
+      TIME\_TO\_DEATH\_DAYS         death\_time
+      TIME\_TO\_DEATH\_UNIT         **days** ← Check this!
 
 
 **Best Practices**
@@ -610,16 +603,16 @@ VanAllen.csv with columns:
 
 Open SKCM\_column\_mapping\_guide.xlsx and add new column:
 
-  **STANDARD\_COLUMN\_NAMES**   **\...**   **VanAllen**
-  ----------------------------- ---------- --------------------
-  COORDINATE\_ID                \...       sample\_id
-  PATIENT\_ID                   \...       patient\_number
-  AGE\_YEARS                    \...       age\_at\_diagnosis
-  AGE\_UNIT                     \...       years
-  GENDER                        \...       sex
-  OS\_MONTHS                    \...       OS\_days
-  OS\_MONTHS\_UNIT              \...       days
-  RECIST\_RESPONSE              \...       response\_RECIST
+      **STANDARD\_COLUMN\_NAMES**   **\...**   **VanAllen**
+      ----------------------------- ---------- --------------------
+      COORDINATE\_ID                \...       sample\_id
+      PATIENT\_ID                   \...       patient\_number
+      AGE\_YEARS                    \...       age\_at\_diagnosis
+      AGE\_UNIT                     \...       years
+      GENDER                        \...       sex
+      OS\_MONTHS                    \...       OS\_days
+      OS\_MONTHS\_UNIT              \...       days
+      RECIST\_RESPONSE              \...       response\_RECIST
 
 **Step 3:** Update R script
 
@@ -647,16 +640,16 @@ file\_final)
 **See "Metadata Standard Column Reference Table" document for more
 information.**
 
-  **Column**                **Allowed Values**
-  ------------------------- -------------------------------------------------
-  VITAL\_STATUS             Alive, Dead
-  GENDER                    male, female
-  OS\_STATUS                0 (Alive), 1 (Dead)
-  AJCC\_STAGE               Stage 0, Stage I, Stage II, Stage III, Stage IV
-  M\_STAGE                  M0, M1A, M1B, M1C, IIIC
-  RECIST\_RESPONSE          CR, PR, PRCR, SD, PD, NE, MR
-  RESPONDER\_NONRESPONDER   Responder, Non-responder
-  SAMPLE\_TIMEPOINT         Pre-treatment, On-treatment, Post-treatment
-  PROGRESSION               Yes, No
-  RECURRENCE                Yes, No
-  PRIOR\_TREATMENT          Yes, No
+      Column                       Allowed Values
+      ------------------------- -------------------------------------------------
+      VITAL\_STATUS             Alive, Dead
+      GENDER                    male, female
+      OS\_STATUS                0 (Alive), 1 (Dead)
+      AJCC\_STAGE               Stage 0, Stage I, Stage II, Stage III, Stage IV
+      M\_STAGE                  M0, M1A, M1B, M1C, IIIC
+      RECIST\_RESPONSE          CR, PR, PRCR, SD, PD, NE, MR
+      RESPONDER\_NONRESPONDER   Responder, Non-responder
+      SAMPLE\_TIMEPOINT         Pre-treatment, On-treatment, Post-treatment
+      PROGRESSION               Yes, No
+      RECURRENCE                Yes, No
+      PRIOR\_TREATMENT          Yes, No
