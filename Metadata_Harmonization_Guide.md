@@ -18,16 +18,16 @@ fields as needed.
 
 ## **Prerequisites**
 
-## **Required Software**
+#### **Required Software**
 
 -   R (version 4.0 or higher)
 -   RStudio (recommended)
 
-## **Required R Packages**
+#### **Required R Packages**
 
 install.packages(c(\"readr\", \"readxl\", \"dplyr\"))
 
-## **Required Files**
+#### **Required Files**
 
 1. Individual dataset metadata files (CSV or Excel format)
 2. Column mapping guide template (Excel file)
