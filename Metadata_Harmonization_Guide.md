@@ -114,10 +114,10 @@ available:
 
 **Example dataset file structure:**
 
-  **patient\_id**   **age**   **sex**   **vital\_status**   **os\_months**   **treatment**   **response**
-  ----------------- --------- --------- ------------------- ---------------- --------------- --------------
-  PT001             65        M         Alive               24.5             Nivolumab       CR
-  PT002             58        F         Dead                8.2              Pembrolizumab   PD
+      **patient\_id**   **age**   **sex**   **vital\_status**   **os\_months**   **treatment**   **response**
+      ----------------- --------- --------- ------------------- ---------------- --------------- --------------
+      PT001             65        M         Alive               24.5             Nivolumab       CR
+      PT002             58        F         Dead                8.2              Pembrolizumab   PD
 
 ### **1.4 Organize Files**
 
