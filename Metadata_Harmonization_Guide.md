@@ -107,7 +107,7 @@ available:
 
 **Example dataset file structure:**
 
-      patient\_id           age     sex       vital\_status       os\_months      treatment       response
+      patient_id           age     sex       vital_status       os_months      treatment       response
       ----------------- --------- --------- ------------------- ---------------- --------------- --------------
       PT001                65          M           Alive                 24.5       Nivolumab         CR
       PT002                58          F           Dead                  8.2        Pembrolizumab     PD
@@ -116,8 +116,8 @@ available:
 
 Place all dataset CSV/Excel files in a single directory:
 
-    /project\_directory/
-    ├── TCGA\_SKCM.csv
+    /project_directory/
+    ├── TCGA_SKCM.csv
     ├── Riaz.csv
     ├── Liu.csv
 
@@ -183,16 +183,16 @@ name (matching the CSV filename without extension).
 
 **Example:**
 
-    STANDARD\_COLUMN\_NAMES              TCGA\_SKCM             Riaz        Liu
+    STANDARD_COLUMN_NAMES              TCGA_SKCM             Riaz        Liu
       ----------------------------- ----------------------- ------------ ------------
-      COORDINATE\_ID                bcr\_patient\_barcode   Sample\_ID   Sample
-      PATIENT\_ID                   bcr\_patient\_barcode   Patient      Patient
-      AGE\_YEARS                    age\_at\_diagnosis      Age          age
-      AGE\_UNIT                     years                   years        years
-      GENDER                        gender                  Sex          gender
-      VITAL\_STATUS                 vital\_status           Status       os\_status
-      OS\_MONTHS                    OS.time                 OS           os\_months
-      OS\_MONTHS\_UNIT              months                  months       months
+      COORDINATE_ID                  bcr_patient_barcode      Sample_ID    Sample
+      PATIENT_ID                     bcr_patient_barcode      Patient      Patient
+      AGE_YEARS                      age_at_diagnosis         Age          age
+      AGE_UNIT                       years                    years        years
+      GENDER                         gender                   Sex          gender
+      VITAL_STATUS                   vital_status             Status       os_status
+      OS_MONTHS                      OS.time                  OS           os_months
+      OS_MONTHS_UNIT                 months                   months       months
 
 ### **2.3 How to Fill the Mapping Guide**
 
@@ -215,16 +215,16 @@ row:
 
 **Example mapping for Liu dataset:**
 
-      STANDARD\_COLUMN\_NAMES           Liu
+      STANDARD_COLUMN_NAMES           Liu
       ----------------------------- -------------
-      COORDINATE\_ID                Sample
-      PATIENT\_ID                   Patient
-      AGE\_YEARS                    age
-      AGE\_UNIT                     years
-      TIME\_TO\_DEATH\_DAYS         death\_time
-      TIME\_TO\_DEATH\_UNIT         days
-      OS\_MONTHS                    
-      OS\_MONTHS\_UNIT              
+      COORDINATE_ID                   Sample
+      PATIENT_ID                      Patient
+      AGE_YEARS                       age
+      AGE_UNIT                        years
+      TIME_TO_DEATH_DAYS              death_time
+      TIME_TO_DEATH_UNIT              days
+      OS_MONTHS                    
+      OS_MONTHS_UNIT              
 
 ### **2.4 One-to-Many Mapping (Advanced)**
 
@@ -234,12 +234,12 @@ columns**.
 **Example:** If Riaz has a single \"survival\_time\" column that should
 populate both OS\_MONTHS and PFS:
 
-        STANDARD\_COLUMN\_NAMES          Riaz
+        STANDARD_COLUMN_NAMES          Riaz
       ----------------------------- ----------------
-      OS\_MONTHS                    survival\_time
-      OS\_MONTHS\_UNIT              months
-      PFS                           survival\_time
-      PFS\_UNIT                     months
+      OS_MONTHS                      survival_time
+      OS_MONTHS_UNIT                 months
+      PFS                            survival_time
+      PFS_UNIT                       months
 
 The script will automatically duplicate the data.
 
@@ -538,7 +538,7 @@ table(original\_data\$vital\_status\_column)
 
           STANDARD_COLUMN_NAMES         Liu 
           ----------------------------- ------------------------
-          TIME_TO_DEATH_DAYS         death\_time
+          TIME_TO_DEATH_DAYS         death_time
           TIME_TO_DEATH_UNIT         days ← Check this!
 
 
@@ -608,7 +608,7 @@ Open SKCM\_column\_mapping\_guide.xlsx and add new column:
       AGE_UNIT                         ...       years
       GENDER                           ...       sex
       OS_MONTHS                        ...       OS_days
-      OS_MONTHS\_UNIT                  ...       days
+      OS_MONTHS_UNIT                   ...       days
       RECIST_RESPONSE                  ...       response_RECIST
 
 **Step 3:** Update R script
