@@ -116,10 +116,10 @@ available:
 
 Place all dataset CSV/Excel files in a single directory:
 
-/project\_directory/
-├── TCGA\_SKCM.csv
-├── Riaz.csv
-├── Liu.csv
+    /project\_directory/
+    ├── TCGA\_SKCM.csv
+    ├── Riaz.csv
+    ├── Liu.csv
 
 ## **Step 2: Create Column Mapping Guide**
 
@@ -234,7 +234,7 @@ columns**.
 **Example:** If Riaz has a single \"survival\_time\" column that should
 populate both OS\_MONTHS and PFS:
 
-      **STANDARD\_COLUMN\_NAMES**   **Riaz**
+        STANDARD\_COLUMN\_NAMES          Riaz
       ----------------------------- ----------------
       OS\_MONTHS                    survival\_time
       OS\_MONTHS\_UNIT              months
@@ -257,25 +257,18 @@ Open metadata\_harmonization\_template.R in RStudio.
 ### **3.2 Verify File Paths**
 
 At the top of the script, check that the file paths are correct:
-dataset\_files \<- list(
-TCGA\_SKCM = \"TCGA\_SKCM.csv\",
-Riaz = \"Riaz.csv\",
-Ribas = \"Ribas.csv\",
-Liu = \"Liu.csv\"
-)
+    dataset_files <- list(
+    TCGA_SKCM = "TCGA_SKCM.csv",
+    Riaz = "Riaz.csv",
+    Ribas = "Ribas.csv",
+    Liu = "Liu.csv"
+    )
 
-mapping\_file \<- \"SKCM\_column\_mapping\_guide.xlsx\"
-
-file\_intermediate\_1 \<-
-\"SKCM\_harmonized\_intermediate\_1\_mapped\_columns.csv\"
-
-file\_intermediate\_2 \<-
-\"SKCM\_harmonized\_intermediate\_2\_survival\_age.csv\"
-
-file\_intermediate\_3 \<-
-\"SKCM\_harmonized\_intermediate\_3\_standard\_values.csv\"
-
-file\_final \<- \"SKCM\_harmonized\_metadata\_V2\_020526.csv\"
+    mapping_file <- "SKCM_column_mapping_guide.xlsx"
+    file_intermediate_1 <- "SKCM_harmonized_intermediate_1_mapped_columns.csv"
+    file_intermediate_2 <- "SKCM_harmonized_intermediate_2_survival_age.csv"
+    file_intermediate_3 <-  "SKCM_harmonized_intermediate_3_standard_values.csv"
+    file_final <- "SKCM_harmonized_metadata_V2_020526.csv"
 
 **Modify if needed:**
 
@@ -286,8 +279,8 @@ file\_final \<- \"SKCM\_harmonized\_metadata\_V2\_020526.csv\"
 ### **3.3 Set Working Directory**
 
 In RStudio, set your working directory to where your files are located:
-setwd(\"/path/to/your/project\_directory\")
-Or use: Session \> Set Working Directory \> Choose Directory
+    setwd("/path/to/your/project_directory")
+    Or use: Session > Set Working Directory > Choose Directory
 
 ### **3.4 Run the Script**
 
@@ -299,18 +292,18 @@ The script will print progress messages:
 
 ========== STEP 1: Column mapping + time conversion ==========
 
-\[TCGA\_SKCM\]
-Loaded: 470 rows, 35 columns
-Mapped 28 unique columns
-Converted OS\_MONTHS: months -\> months
-Output: 470 rows, 45 columns
+    [TCGA_SKCM]
+    Loaded: 470 rows, 35 columns
+    Mapped 28 unique columns
+    Converted OS\_MONTHS: months -\> months
+    Output: 470 rows, 45 columns
 
-\[Riaz\]
-Loaded: 51 rows, 22 columns
-Mapped 18 unique columns
-Handling 1 duplicate source column(s):
-survival\_time -\> OS\_MONTHS (already mapped) + PFS (duplicated)
-Output: 51 rows, 45 columns
+    [Riaz]
+    Loaded: 51 rows, 22 columns
+    Mapped 18 unique columns
+    Handling 1 duplicate source column(s):
+    survival_time -> OS_MONTHS (already mapped) + PFS (duplicated)
+    Output: 51 rows, 45 columns
 
 ✓ Saved: SKCM\_harmonized\_intermediate\_1\_mapped\_columns.csv
 
@@ -392,15 +385,16 @@ The script generates 4 output files:
 
 ## **Use the Testing Script**
 
-Run metadata\_harmonization\_testing.R to validate your harmonized
-metadata:
-source(\"metadata\_harmonization\_testing.R\")
-\# Test all datasets
-test\_row\_counts(dataset\_files, harmonized\_file)
+Run metadata\_harmonization\_testing.R to validate your harmonized metadata:
+    source("metadata_harmonization_testing.R") 
 
-\# Detailed test for specific dataset
-run\_all\_tests(\"Liu\", dataset\_files, mapping\_file,
-harmonized\_file)
+    # Test all datasets
+    test_row_counts(dataset_files, harmonized_file)
+
+    # Detailed test for specific dataset
+    run_all_tests("Liu", dataset_files, mapping_file, harmonized_file)
+
+
 
 ## **What to Check**
 
@@ -450,26 +444,29 @@ Open the final CSV in Excel/R and verify:
 
 **Check 1: Sample counts**
 
-final\_data \<- read.csv(\"SKCM\_harmonized\_metadata\_V2\_020526.csv\")
-table(final\_data\$DATASET)
+    final_data <- read.csv("SKCM_harmonized_metadata_V2_020526.csv")
+    table(final_data$DATASET)
+
 
 **Check 2: Standardized values**
 
-table(final\_data\$VITAL\_STATUS) \# Should only be \"Alive\" or
-\"Dead\"
-table(final\_data\$GENDER) \# Should only be \"male\" or \"female\"
-table(final\_data\$RECIST\_RESPONSE)
+    table(final_data$VITAL_STATUS)  # Should only be "Alive" or "Dead"
+    table(final_data$GENDER)        # Should only be "male" or "female"
+    table(final_data$RECIST_RESPONSE)
+
 
 **Check 3: Specific patients**
 
-\# Check a known patient from original dataset
-liu\_data \<- read.csv(\"Liu.csv\")
-liu\_patient \<- liu\_data\[liu\_data\$Patient == \"Patient1\", \]
-harmonized\_patient \<- final\_data\[final\_data\$PATIENT\_ID ==
-\"Patient1\" &
-final\_data\$DATASET == \"Liu\", \]
-\# Compare key values
-liu\_patient\$age \# vs harmonized\_patient\$AGE\_YEARS
+    Check a known patient from original dataset
+    liu_data <- read.csv("Liu.csv")
+    liu_patient <- liu_data[liu_data$Patient == "Patient1", ]
+
+    harmonized_patient <- final_data[final_data$PATIENT_ID == "Patient1" & 
+                                      final_data$DATASET == "Liu", ]
+
+    Compare key values
+    liu_patient$age  # vs harmonized_patient$AGE_YEARS
+
 
 ## **Troubleshooting**
 
@@ -539,10 +536,10 @@ table(original\_data\$vital\_status\_column)
 
 **Example fix in mapping guide:**
 
-      **STANDARD\_COLUMN\_NAMES**   **Liu**
-      ----------------------------- ------------------------
-      TIME\_TO\_DEATH\_DAYS         death\_time
-      TIME\_TO\_DEATH\_UNIT         **days** ← Check this!
+          STANDARD_COLUMN_NAMES         Liu 
+          ----------------------------- ------------------------
+          TIME_TO_DEATH_DAYS         death\_time
+          TIME_TO_DEATH_UNIT         days ← Check this!
 
 
 **Best Practices**
@@ -603,16 +600,16 @@ VanAllen.csv with columns:
 
 Open SKCM\_column\_mapping\_guide.xlsx and add new column:
 
-      **STANDARD\_COLUMN\_NAMES**   **\...**   **VanAllen**
+      STANDARD_COLUMN_NAMES            ...         VanAllen
       ----------------------------- ---------- --------------------
-      COORDINATE\_ID                \...       sample\_id
-      PATIENT\_ID                   \...       patient\_number
-      AGE\_YEARS                    \...       age\_at\_diagnosis
-      AGE\_UNIT                     \...       years
-      GENDER                        \...       sex
-      OS\_MONTHS                    \...       OS\_days
-      OS\_MONTHS\_UNIT              \...       days
-      RECIST\_RESPONSE              \...       response\_RECIST
+      COORDINATE_ID                    ...       sample_id
+      PATIENT_ID                       ...       patient_number
+      AGE_YEARS                        ...       age_at_diagnosis
+      AGE_UNIT                         ...       years
+      GENDER                           ...       sex
+      OS_MONTHS                        ...       OS_days
+      OS_MONTHS\_UNIT                  ...       days
+      RECIST_RESPONSE                  ...       response_RECIST
 
 **Step 3:** Update R script
 
@@ -642,14 +639,14 @@ information.**
 
       Column                       Allowed Values
       ------------------------- -------------------------------------------------
-      VITAL\_STATUS             Alive, Dead
-      GENDER                    male, female
-      OS\_STATUS                0 (Alive), 1 (Dead)
-      AJCC\_STAGE               Stage 0, Stage I, Stage II, Stage III, Stage IV
-      M\_STAGE                  M0, M1A, M1B, M1C, IIIC
-      RECIST\_RESPONSE          CR, PR, PRCR, SD, PD, NE, MR
-      RESPONDER\_NONRESPONDER   Responder, Non-responder
-      SAMPLE\_TIMEPOINT         Pre-treatment, On-treatment, Post-treatment
-      PROGRESSION               Yes, No
-      RECURRENCE                Yes, No
-      PRIOR\_TREATMENT          Yes, No
+      VITAL_STATUS                 Alive, Dead
+      GENDER                        male, female
+      OS_STATUS                    0 (Alive), 1 (Dead)
+      AJCC_STAGE                   Stage 0, Stage I, Stage II, Stage III, Stage IV
+      M_STAGE                      M0, M1A, M1B, M1C, IIIC
+      RECIST_RESPONSE              CR, PR, PRCR, SD, PD, NE, MR
+      RESPONDER_NONRESPONDER       Responder, Non-responder
+      SAMPLE_TIMEPOINT             Pre-treatment, On-treatment, Post-treatment
+      PROGRESSION                   Yes, No
+      RECURRENCE                    Yes, No
+      PRIOR_TREATMENT               Yes, No
