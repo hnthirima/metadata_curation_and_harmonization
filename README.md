@@ -10,13 +10,14 @@ In this version, metadata from multiple melanoma RNA-Seq datasets were compiled 
 - ✅ Categorical value harmonization (200+ standardization rules)
 - ✅ One-to-many column mapping support
 - ✅ Built-in validation and testing framework
-- ✅ Handles 1,100+ samples across multiple datasets
+- ✅ Handles 1000+ samples across multiple datasets
 
 ### Repository Contents
 - Metadata Harmonization Guide.md............... # Complete step-by-step guide
-- Madata Standard Column Reference Table.md .....# Reference table of all standard columns
+- Madata Standard Column Reference Table.pdf ....# Reference table of all standard columns
 - metadata_harmonization_testing.R ..............# Validation and QC testing script
 - metadata_harmonization_main.R..................# Main harmonization script
 - SKCM_column_mapping_guide.xlsx................ # Template for column mapping (user-provided)
+- metadata_subset_files.R........................# Subsetting metadata file per patient and sample attributes
 
 
