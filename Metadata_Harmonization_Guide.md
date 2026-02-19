@@ -381,6 +381,17 @@ The script generates 4 output files:
     -   Dataset-specific SAMPLE\_TIMEPOINT filled (Liumarked as
         \"Pre-treatment\")
 
+## Optional subsetting of final metadata file to support Oncoscape requirements
+
+When there are more than one sample from the same patient, separate metadata file per patient IDs and sample IDs are helpful to navigate visualization and analysis on Oncoscape. 
+
+Run metadata\_subset\_files.R to generate these files to support Oncoscape requirements. 
+
+Output files:
+1. Final metadata file generated above: "metadata_clinical.csv"
+2. Metadata file subsetted to include patient-specific attributes: "metadata_patient.csv"
+3. Metadata file subsetted to include sample-specific attributes: "metadata_sample.csv"
+   
 # **Validation and Testing**
 
 ## **Use the Testing Script**
